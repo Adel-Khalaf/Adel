@@ -1,0 +1,56 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: white;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.logo img {
+    width: 300px;
+    margin-top: 20px;
+}
+
+.search-box {
+    margin: 20px 0;
+}
+
+input[type="text"], input[type="email"] {
+    width: 300px;
+    padding: 5px;
+}
+
+button {
+    margin: 5px;
+    padding: 5px 10px;
+}
+
+.links-section {
+    display: flex;
+    justify-content: space-between;
+    background-color: #99CCCC;
+    padding: 10px;
+    margin-top: 20px;
+    border: 1px solid teal;
+}
+
+.column {
+    width: 30%;
+    text-align: left;
+}
+
+.column a {
+    color: blue;
+    text-decoration: underline;
+    display: block;
+    margin: 3px 0;
+}
+
+footer {
+    margin-top: 20px;
+    font-size: 12px;
+    color: gray;
+}
