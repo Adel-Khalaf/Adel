@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calculator</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <style>
+    .calculator {
+      max-width: 400px;
+      margin: 50px auto;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      background: #f8f9fa;
+    }
+    .display {
+      height: 60px;
+      font-size: 2rem;
+      text-align: right;
+      padding: 10px;
+      background: white;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+    .btn {
+      font-size: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator border">
+    <div id="display" class="display">0</div>
+    <div class="row g-2">
+      <div class="col-3"><button class="btn btn-danger w-100" onclick="clearDisplay()">C</button></div>
+      <div class="col-3"><button class="btn btn-secondary w-100" onclick="appendOperator('/')">÷</button></div>
+      <div class="col-3"><button class="btn btn-secondary w-100" onclick="appendOperator('*')">×</button></div>
+      <div class="col-3"><button class="btn btn-secondary w-100" onclick="appendOperator('-')">−</button></div>
+
+      <div class="col-3"><button class="btn btn-light w-100" onclick="appendNumber('7')">7</button></div>
+      <div class="col-3"><button class="btn btn-light w-100" onclick="appendNumber('8')">8</button></div>
+      <div class="col-3"><button class="btn btn-light w-100" onclick="appendNumber('9')">9</button></div>
+      <div class="col-3"><button class="btn btn-secondary w-100" onclick="appendOperator('+')">+</button></div>
+
+      <div class="col-3"><button class="btn btn-light w-100" onclick="appendNumber('4')">4</button></div>
+      <div class="col-3"><button class="btn btn-light w-100" onclick="appendNumber('5')">5</button></div>
+      <div class="col-3"><button class="btn btn-light w-100" onclick="appendNumber('6')">6</button></div>
+      <div class="col-3" rowspan="2"><button class="btn btn-success w-100 h-100" onclick="calculate()">=</button></div>
+
+      <div class="col-3"><button class="btn btn-light w-100" onclick="appendNumber('1')">1</button></div>
+      <div class="col-3"><button class="btn btn-light w-100" onclick="appendNumber('2')">2</button></div>
+      <div class="col-3"><button class="btn btn-light w-100" onclick="appendNumber('3')">3</button></div>
+
+      <div class="col-6"><button class="btn btn-light w-100" onclick="appendNumber('0')">0</button></div>
+      <div class="col-3"><button class="btn btn-light w-100" onclick="appendNumber('.')">.</button></div>
+    </div>
+  </div>
+
+  <script>
+    let currentInput = '';
+
+    function updateDisplay() {
+      document.getElementById('display').innerText = currentInput || '0';
+    }
+
+    function appendNumber(num) {
+      currentInput += num;
+      updateDisplay();
+    }
+
+    function appendOperator(op) {
+      if (currentInput === '') return;
+      const lastChar = currentInput.slice(-1);
+      if ('+-*/'.includes(lastChar)) {
+        currentInput = currentInput.slice(0, -1);
+      }
+      currentInput += op;
+      updateDisplay();
+    }
+
+    function clearDisplay() {
+      currentInput = '';
+      updateDisplay();
+    }
+
+    function calculate() {
+      try {
+        currentInput = eval(currentInput).toString();
+        updateDisplay();
+      } catch (e) {
+        currentInput = '';
+        document.getElementById('display').innerText = 'Error';
+      }
+    }
+  </script>
+</body>
+</html>
